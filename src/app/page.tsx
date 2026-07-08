@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Experience } from "@/components/experience";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { actions, profile, socials } from "@/lib/data";
 
@@ -12,7 +13,8 @@ export default function Home() {
         <ThemeToggle />
       </header>
 
-      <main className="flex flex-1 items-center justify-center px-6 py-16">
+      <main className="flex flex-1 flex-col">
+        <section className="flex min-h-[72svh] items-center justify-center px-6 pt-16 pb-10">
         <div className="flex w-full max-w-md flex-col items-center text-center">
           {/* Avatar — small, minimalist */}
           <div className="animate-fade-up mb-6" style={{ animationDelay: "0ms" }}>
@@ -80,6 +82,9 @@ export default function Home() {
             ))}
           </nav>
         </div>
+        </section>
+
+        <Experience />
       </main>
 
       <footer className="pb-8 text-center text-xs text-[var(--muted)]">
