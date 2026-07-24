@@ -3,13 +3,10 @@ import { experience } from "@/lib/data";
 
 export function Experience() {
   return (
-    <section className="flex justify-center px-6 pb-24">
-      <div className="w-fit">
-      <h2 className="mb-9 text-sm font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
-        Experience
-      </h2>
+    <section className="animate-fade-up mt-14 mb-6" style={{ animationDelay: "210ms" }}>
+      <h2 className="section-title font-rounded font-semibold">Experience</h2>
 
-      <ol className="relative ml-3.5 border-l border-[var(--border)]">
+      <ol className="mt-8 ml-3.5 border-l border-[var(--border)]">
         {experience.map((job) => (
           <li
             key={`${job.company}-${job.period}`}
@@ -27,7 +24,6 @@ export function Experience() {
           </li>
         ))}
       </ol>
-      </div>
     </section>
   );
 }

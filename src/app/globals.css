@@ -3,23 +3,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
-  --muted: #6b7280;
+  --background: #f0e7db;
+  --foreground: #202023;
+  --muted: #5f5a52;
   --card: #ffffff;
-  --border: #e5e7eb;
-  --accent: #171717;
-  --glow: rgba(120, 120, 120, 0.18);
+  --border: #d8ccbb;
+  --accent: #202023;
+  --link: #3d7aed;
+  --teal: #88ccca;
+  --glow: rgba(136, 204, 202, 0.22);
+  /* Translucent greeting box */
+  --box: rgba(255, 255, 255, 0.5);
+  --box-border: rgba(255, 255, 255, 0.6);
+  --rule: #525252;
+  --nav-bg: rgba(255, 255, 255, 0.4);
+  /* Theme toggle: purple in light mode */
+  --toggle-bg: #805ad5;
+  --toggle-bg-hover: #6b46c1;
+  --toggle-fg: #ffffff;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --muted: #9ca3af;
-  --card: #131313;
-  --border: #262626;
-  --accent: #ededed;
-  --glow: rgba(180, 180, 220, 0.14);
+  --background: #202023;
+  --foreground: #f0e7db;
+  --muted: #a39d92;
+  --card: #2a2a2d;
+  --border: #3a3a3d;
+  --accent: #f0e7db;
+  --link: #ff63c3;
+  --teal: #88ccca;
+  --glow: rgba(136, 204, 202, 0.14);
+  --box: rgba(255, 255, 255, 0.06);
+  --box-border: rgba(255, 255, 255, 0.12);
+  --rule: #888888;
+  --nav-bg: rgba(32, 32, 35, 0.55);
+  /* Theme toggle: orange in dark mode */
+  --toggle-bg: #fbd38d;
+  --toggle-bg-hover: #f6ad55;
+  --toggle-fg: #1a202c;
 }
 
 @theme inline {
@@ -29,7 +50,10 @@
   --color-card: var(--card);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-link: var(--link);
+  --color-teal: var(--teal);
   --font-sans: var(--font-geist-sans);
+  --font-rounded: var(--font-rounded);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -40,7 +64,38 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle background treatment: small, minimal glow + faint grid */
+/* Rounded display font for headings (M PLUS Rounded 1c) */
+.font-rounded {
+  font-family: var(--font-rounded), ui-rounded, "Segoe UI Rounded", system-ui,
+    sans-serif;
+}
+
+/* Links with underline offset */
+a.link {
+  color: var(--link);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+}
+
+/* Translucent, blurred greeting box */
+.greeting-box {
+  background: var(--box);
+  border: 1px solid var(--box-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Underlined section titles */
+.section-title {
+  display: inline-block;
+  font-size: 20px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 4px;
+}
+
+/* Subtle background treatment: teal glow + faint grid */
 .bg-ambient {
   position: fixed;
   inset: 0;
@@ -76,4 +131,34 @@ body {
 
 .animate-fade-up {
   animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-nav-in {
+  animation: nav-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+.animate-icon-in {
+  animation: icon-in 0.3s ease-out both;
 }

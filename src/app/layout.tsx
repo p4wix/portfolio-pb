@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, M_PLUS_Rounded_1c } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { profile } from "@/lib/data";
@@ -14,8 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const mPlusRounded = M_PLUS_Rounded_1c({
+  variable: "--font-rounded",
+  weight: ["400", "500", "700", "800"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: `${profile.name} — Portfolio`,
+  title: `${profile.name} - Portfolio`,
   description: profile.tagline,
 };
 
@@ -28,7 +34,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${mPlusRounded.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <ThemeProvider

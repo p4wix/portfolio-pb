@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Experience } from "@/components/experience";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Navbar } from "@/components/navbar";
+import { VoxelModel } from "@/components/voxel-model";
 import { actions, profile, socials } from "@/lib/data";
 
 export default function Home() {
@@ -9,53 +10,66 @@ export default function Home() {
       <div className="bg-grid" aria-hidden />
       <div className="bg-ambient" aria-hidden />
 
-      <header className="absolute right-4 top-4 sm:right-6 sm:top-6">
-        <ThemeToggle />
-      </header>
+      <Navbar />
 
-      <main className="flex flex-1 flex-col">
-        <section className="flex min-h-[72svh] items-center justify-center px-6 pt-16 pb-10">
-        <div className="flex w-full max-w-md flex-col items-center text-center">
-          {/* Avatar — small, minimalist */}
-          <div className="animate-fade-up mb-6" style={{ animationDelay: "0ms" }}>
+      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-6 pt-20 pb-10">
+        {/* 3D voxel model */}
+        <VoxelModel />
+
+        {/* Greeting box */}
+        <div
+          className="animate-fade-up greeting-box mb-6 rounded-lg px-4 py-3 text-center text-[15px]"
+          style={{ animationDelay: "0ms" }}
+        >
+          {profile.greeting}
+        </div>
+
+        {/* Name + profile image */}
+        <div
+          className="animate-fade-up flex items-center"
+          style={{ animationDelay: "70ms" }}
+        >
+          <div className="grow">
+            <h1 className="font-rounded text-3xl font-extrabold tracking-tight sm:text-4xl">
+              {profile.name}
+            </h1>
+            <p className="mt-1 text-[15px] text-[var(--muted)]">
+              {profile.role}
+            </p>
+          </div>
+          <div className="ml-6 shrink-0">
             <Image
               src={profile.avatar}
               alt={profile.name}
-              width={256}
-              height={256}
+              width={200}
+              height={200}
               quality={95}
               priority
               style={{ objectPosition: "50% 18%" }}
-              className="h-28 w-28 rounded-full border border-[var(--border)] object-cover shadow-sm"
+              className="h-[100px] w-[100px] rounded-full border-2 border-[var(--box-border)] object-cover"
             />
           </div>
+        </div>
 
-          <h1
-            className="animate-fade-up text-2xl font-semibold tracking-tight sm:text-3xl"
-            style={{ animationDelay: "70ms" }}
-          >
-            {profile.name}
-          </h1>
-
-          <p
-            className="animate-fade-up mt-3 max-w-sm text-balance text-[15px] leading-relaxed text-[var(--muted)]"
-            style={{ animationDelay: "140ms" }}
-          >
-            {profile.tagline}
+        {/* Work section */}
+        <section
+          className="animate-fade-up mt-10"
+          style={{ animationDelay: "140ms" }}
+        >
+          <h2 className="section-title font-rounded font-semibold">Work</h2>
+          <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground)]/90">
+            {profile.about}
           </p>
 
-          <div
-            className="animate-fade-up mt-7 flex flex-wrap items-center justify-center gap-3"
-            style={{ animationDelay: "210ms" }}
-          >
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             {actions.map((action, i) => (
               <a
                 key={action.label}
                 href={action.href}
                 className={
                   i === 0
-                    ? "rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-90"
-                    : "rounded-full border border-[var(--border)] px-5 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--card)]"
+                    ? "rounded-lg bg-[var(--teal)] px-5 py-2 text-sm font-medium text-[#202023] transition-opacity hover:opacity-90"
+                    : "rounded-lg border border-[var(--border)] px-5 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--card)]"
                 }
               >
                 {action.label}
@@ -64,8 +78,7 @@ export default function Home() {
           </div>
 
           <nav
-            className="animate-fade-up mt-10 flex items-center justify-center gap-1"
-            style={{ animationDelay: "280ms" }}
+            className="mt-6 flex items-center gap-1"
             aria-label="Social"
           >
             {socials.map(({ label, href, icon: Icon }) => (
@@ -81,7 +94,6 @@ export default function Home() {
               </a>
             ))}
           </nav>
-        </div>
         </section>
 
         <Experience />

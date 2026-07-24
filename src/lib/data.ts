@@ -13,9 +13,18 @@ import {
  */
 export const profile = {
   name: "Paweł Biniak",
+  // Small logo emoji shown before the name in the navbar
+  emoji: "☁️",
+  // Short greeting shown in the translucent box above the name
+  greeting: "Hello, I'm a Salesforce developer based in Poland!",
+  // Subtitle under the name
+  role: "Salesforce Developer ( CRM / Web / AI )",
   // One sentence about you (rasmic.xyz style)
   tagline:
     "Software engineer specializing in Salesforce. I build CRM solutions, web apps, and AI-powered products.",
+  // Longer intro paragraph shown in the Work section
+  about:
+    "Paweł is a Salesforce developer based in Poland with a passion for building reliable CRM solutions and digital products. He works across the platform - from Apex and LWC to integrations and automation - and enjoys turning real business problems into clean, maintainable code. Outside of Salesforce he builds web apps and experiments with AI-powered products.",
   // Path to the photo in /public
   avatar: "/avatar.jpg",
   location: "Poland",
